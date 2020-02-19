@@ -3,18 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E948C6951CE4A71575C82763 /* libPods-Forecaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B22BCC8D19E3CEE7A9FBE12 /* libPods-Forecaster.a */; };
 		EE43133A23FB1AE500213D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43133923FB1AE500213D40 /* AppDelegate.swift */; };
 		EE43133C23FB1AE500213D40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43133B23FB1AE500213D40 /* ViewController.swift */; };
 		EE43133F23FB1AE500213D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE43133D23FB1AE500213D40 /* Main.storyboard */; };
 		EE43134123FB1AE700213D40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE43134023FB1AE700213D40 /* Assets.xcassets */; };
 		EE43134423FB1AE700213D40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE43134223FB1AE700213D40 /* LaunchScreen.storyboard */; };
+		EEEA9CF723FD2FD4001BD6CF /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA9CF623FD2FD4001BD6CF /* OpenWeatherAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B22BCC8D19E3CEE7A9FBE12 /* libPods-Forecaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Forecaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C6E71711B4C7190EE7175F6 /* Pods-Forecaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forecaster.release.xcconfig"; path = "Target Support Files/Pods-Forecaster/Pods-Forecaster.release.xcconfig"; sourceTree = "<group>"; };
+		B0DFFFF1C5BA3B57CA08F706 /* Pods-Forecaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forecaster.debug.xcconfig"; path = "Target Support Files/Pods-Forecaster/Pods-Forecaster.debug.xcconfig"; sourceTree = "<group>"; };
 		EE43133623FB1AE500213D40 /* Forecaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forecaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43133923FB1AE500213D40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE43133B23FB1AE500213D40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		EE43134023FB1AE700213D40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE43134323FB1AE700213D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE43134523FB1AE700213D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEEA9CF623FD2FD4001BD6CF /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E948C6951CE4A71575C82763 /* libPods-Forecaster.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8D2462C95EEC46248470380 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0DFFFF1C5BA3B57CA08F706 /* Pods-Forecaster.debug.xcconfig */,
+				0C6E71711B4C7190EE7175F6 /* Pods-Forecaster.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DEA889FF10366EF9891D60AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B22BCC8D19E3CEE7A9FBE12 /* libPods-Forecaster.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE43132D23FB1AE500213D40 = {
 			isa = PBXGroup;
 			children = (
 				EE43133823FB1AE500213D40 /* Forecaster */,
 				EE43133723FB1AE500213D40 /* Products */,
+				C8D2462C95EEC46248470380 /* Pods */,
+				DEA889FF10366EF9891D60AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +80,7 @@
 		EE43133823FB1AE500213D40 /* Forecaster */ = {
 			isa = PBXGroup;
 			children = (
+				EEEA9CF523FD2F8C001BD6CF /* Source */,
 				EE43133923FB1AE500213D40 /* AppDelegate.swift */,
 				EE43133B23FB1AE500213D40 /* ViewController.swift */,
 				EE43133D23FB1AE500213D40 /* Main.storyboard */,
@@ -64,6 +91,14 @@
 			path = Forecaster;
 			sourceTree = "<group>";
 		};
+		EEEA9CF523FD2F8C001BD6CF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EEEA9CF623FD2FD4001BD6CF /* OpenWeatherAPI.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE43134823FB1AE700213D40 /* Build configuration list for PBXNativeTarget "Forecaster" */;
 			buildPhases = (
+				86F30F173161E7768A87CA93 /* [CP] Check Pods Manifest.lock */,
 				EE43133223FB1AE500213D40 /* Sources */,
 				EE43133323FB1AE500213D40 /* Frameworks */,
 				EE43133423FB1AE500213D40 /* Resources */,
+				5AFAE975CB768D645C9C58B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +167,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5AFAE975CB768D645C9C58B7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Forecaster/Pods-Forecaster-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Forecaster/Pods-Forecaster-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Forecaster/Pods-Forecaster-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F30F173161E7768A87CA93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Forecaster-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EE43133223FB1AE500213D40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -137,6 +216,7 @@
 			files = (
 				EE43133C23FB1AE500213D40 /* ViewController.swift in Sources */,
 				EE43133A23FB1AE500213D40 /* AppDelegate.swift in Sources */,
+				EEEA9CF723FD2FD4001BD6CF /* OpenWeatherAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +360,13 @@
 		};
 		EE43134923FB1AE700213D40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0DFFFF1C5BA3B57CA08F706 /* Pods-Forecaster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4F3W944NGN;
 				INFOPLIST_FILE = Forecaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +380,13 @@
 		};
 		EE43134A23FB1AE700213D40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C6E71711B4C7190EE7175F6 /* Pods-Forecaster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4F3W944NGN;
 				INFOPLIST_FILE = Forecaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
