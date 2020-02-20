@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Maps View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Forecaster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapsViewController" customModule="Forecaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,12 +32,72 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fPJ-0I-1Of"/>
                     <connections>
                         <outlet property="labelLoading" destination="fuS-M2-b9P" id="ZC3-vC-JDE"/>
+                        <segue destination="1Nu-CD-eX9" kind="show" identifier="ForecastViewSegue" id="CKy-AV-A3z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="991.20000000000005" y="30.134932533733135"/>
+        </scene>
+        <!--Weather Forecast View Controller-->
+        <scene sceneID="428-ZS-0eb">
+            <objects>
+                <viewController id="1Nu-CD-eX9" customClass="WeatherForecastViewController" customModule="Forecaster" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mLM-GR-RTX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+12°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUv-y4-YQ0">
+                                <rect key="frame" x="123.5" y="126" width="128" height="82"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="68"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zhdanovichy, BY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4O-kk-TA0">
+                                <rect key="frame" x="124" y="56.5" width="127.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It feels like +9°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhN-2Z-OnR">
+                                <rect key="frame" x="37.5" y="257" width="113.5" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light rain today " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfL-hl-cmj">
+                                <rect key="frame" x="37.5" y="285" width="123.5" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rhN-2Z-OnR" firstAttribute="leading" secondItem="mLM-GR-RTX" secondAttribute="centerX" multiplier="0.2" id="8CX-JM-EeW"/>
+                            <constraint firstItem="dUv-y4-YQ0" firstAttribute="centerY" secondItem="mLM-GR-RTX" secondAttribute="centerY" multiplier="0.5" id="IEm-Ug-RDo"/>
+                            <constraint firstItem="Q4O-kk-TA0" firstAttribute="centerY" secondItem="mLM-GR-RTX" secondAttribute="centerY" multiplier="0.2" id="MeU-xa-Eln"/>
+                            <constraint firstItem="dUv-y4-YQ0" firstAttribute="centerX" secondItem="mLM-GR-RTX" secondAttribute="centerX" id="Scm-W4-92q"/>
+                            <constraint firstItem="hfL-hl-cmj" firstAttribute="leading" secondItem="mLM-GR-RTX" secondAttribute="centerX" multiplier="0.2" id="XRS-6w-S9E"/>
+                            <constraint firstItem="hfL-hl-cmj" firstAttribute="top" secondItem="rhN-2Z-OnR" secondAttribute="bottom" constant="8" id="c34-wL-gkz"/>
+                            <constraint firstItem="Q4O-kk-TA0" firstAttribute="centerX" secondItem="mLM-GR-RTX" secondAttribute="centerX" id="jZ7-rF-AiQ"/>
+                            <constraint firstItem="rhN-2Z-OnR" firstAttribute="centerY" secondItem="mLM-GR-RTX" secondAttribute="centerY" multiplier="0.8" id="laj-fB-CbD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CGr-yL-at4"/>
+                    </view>
+                    <connections>
+                        <outlet property="feelsLikeLabel" destination="rhN-2Z-OnR" id="eqE-KY-KVj"/>
+                        <outlet property="locationLabel" destination="Q4O-kk-TA0" id="Tau-sp-XA6"/>
+                        <outlet property="tempLabel" destination="dUv-y4-YQ0" id="aoH-Fk-tAc"/>
+                        <outlet property="weatherConditionLabel" destination="hfL-hl-cmj" id="ULj-mp-VDO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uWK-8e-Kag" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792.8" y="29.23538230884558"/>
         </scene>
     </scenes>
 </document>

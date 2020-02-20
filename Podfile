@@ -4,4 +4,5 @@ target 'Forecaster' do
   # use_frameworks!
   pod 'GoogleMaps'
   pod 'Moya'
+  pod 'BrightFutures'
 end

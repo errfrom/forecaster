@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import Moya
+import BrightFutures
 
 struct WeatherData {
 
@@ -23,6 +24,7 @@ struct WeatherData {
   let location: String?
   let country: String?
   var weatherStamps: [WeatherStamp] = []
+  var currentWeatherStamp: WeatherStamp? = nil
   
   /*
       Builds daily stamps by averaging
@@ -40,6 +42,10 @@ struct WeatherData {
     let weatherStampsByDay = Dictionary(grouping: self.weatherStamps, by: groupByDay)
     print(weatherStampsByDay.keys)
     
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let todayDate = weatherStampsByDay.keys.filter( {$0 == formatter.string(from: Date()) } ).first
+
     var dailyStamps = [WeatherStamp]()
     
     for (day, stampsByDay) in weatherStampsByDay {
@@ -55,10 +61,16 @@ struct WeatherData {
       let feelLikeValues = stampsByDay.map { $0.feelsLike }
       let averageFeelsLike = feelLikeValues.reduce(0, +) / Double(feelLikeValues.count)
       
-      dailyStamps.append(WeatherStamp(temp: averageTemp,
+      let weatherStamp = WeatherStamp(temp: averageTemp,
                                       feelsLike: averageFeelsLike,
                                       weatherCondition: mostFrequentCondition,
-                                      datetimeText: day))
+                                      datetimeText: day)
+      
+      if day == todayDate {
+        self.currentWeatherStamp = weatherStamp
+      } else {
+        dailyStamps.append(weatherStamp)
+      }
     }
     
     self.weatherStamps = dailyStamps
@@ -105,10 +117,10 @@ extension WeatherData {
     }
   }
   
-  static func requestOpenWeather(_ coords: CLLocationCoordinate2D) -> WeatherData? {
+  static func requestOpenWeather(_ coords: CLLocationCoordinate2D) -> Future<WeatherData, Never> {
     let provider = MoyaProvider<OpenWeatherService>()
     
-    var weatherData: WeatherData? = nil
+    let promise = Promise<WeatherData, Never>()
     
     provider.request(.getForecastByGeoCoords(coords: coords)) { result in
       switch result {
@@ -117,10 +129,9 @@ extension WeatherData {
           let data = moyaResponse.data
           let jsonWithObjectRoot = try? JSONSerialization.jsonObject(with: data, options: [])
           if let json = jsonWithObjectRoot as? [String: Any] {
-            weatherData = WeatherData(json: json)
-            weatherData!.toDailyStamps()
-            print(weatherData!)
-            
+            var weatherData = WeatherData(json: json)
+            weatherData.toDailyStamps()
+            promise.success(weatherData)
           } else {
           }
         } else {
@@ -132,11 +143,36 @@ extension WeatherData {
       }
     }
     
-    return nil
+    return promise.future
   }
 }
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class WeatherForecastViewController: UIViewController {
+  var weatherData: WeatherData!
+  
+  @IBOutlet var tempLabel: UILabel!
+  @IBOutlet var locationLabel: UILabel!
+  @IBOutlet var feelsLikeLabel: UILabel!
+  @IBOutlet var weatherConditionLabel: UILabel!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print(weatherData)
+    locationLabel.text = weatherData.location
+    if let country = weatherData.country {
+      locationLabel.text? += ", \(country)"
+    }
+    
+    if let stamp = weatherData.currentWeatherStamp {
+      tempLabel.text = "\(Int(stamp.temp.rounded()))°"
+      feelsLikeLabel.text = "It feels like \(Int(stamp.feelsLike.rounded()))°"
+      weatherConditionLabel.text = stamp.weatherCondition
+    }
+    
+  }
+}
+
+class MapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
   @IBOutlet var labelLoading: UILabel!
   
   private let locationManager = CLLocationManager()
@@ -170,9 +206,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
   }
   
   func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-    mapMarker.position = coordinate
-    let _ = WeatherData.requestOpenWeather(coordinate)
     print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+    mapMarker.position = coordinate
+    
+    let future = WeatherData.requestOpenWeather(coordinate)
+    future.onSuccess { weatherData in
+      self.performSegue(withIdentifier: "ForecastViewSegue", sender: weatherData)
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if (segue.identifier == "ForecastViewSegue") {
+      let vc = segue.destination as! WeatherForecastViewController
+      vc.weatherData = (sender as! WeatherData)
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
